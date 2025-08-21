@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scientific Calculator</title>
+  <style>
+    :root {
+      --bg: #f8f9fa;
+      --btn: #e0e0e0;
+      --btn-hover: #d6d6d6;
+      --display: #ffffff;
+      --text: #212529;
+      --accent: #00b894;
+    }
+
+    body[data-theme="dark"] {
+      --bg: #1e1e2f;
+      --btn: #333;
+      --btn-hover: #555;
+      --display: #222;
+      --text: #eee;
+      --accent: #00cec9;
+    }
+
+    body[data-theme="pastel"] {
+      --bg: #fff0f5;
+      --btn: #ffd6e0;
+      --btn-hover: #ffb6c1;
+      --display: #fffafa;
+      --text: #5c5c5c;
+      --accent: #ff80ab;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      padding: 30px;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+      font-size: 2rem;
+    }
+
+    select {
+      margin-bottom: 20px;
+      padding: 6px 10px;
+      font-size: 1rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    .calculator {
+      background: var(--display);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      width: 100%;
+    }
+
+    .display {
+      background: var(--display);
+      color: var(--text);
+      font-size: 1.6rem;
+      padding: 15px;
+      border-radius: 8px;
+      text-align: right;
+      overflow-x: auto;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    button {
+      padding: 14px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      background: var(--btn);
+      color: var(--text);
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: var(--btn-hover);
+    }
+
+    button.operator {
+      background-color: var(--accent);
+      color: white;
+    }
+
+    button.operator:hover {
+      opacity: 0.9;
+    }
+
+    button.equal {
+      background-color: #00b894;
+      color: white;
+      grid-column: span 2;
+    }
+
+    button.clear {
+      background-color: #d63031;
+      color: white;
+    }
+
+    .history {
+      margin-top: 20px;
+      background: var(--btn);
+      padding: 12px;
+      border-radius: 8px;
+      max-height: 150px;
+      overflow-y: auto;
+      font-size: 0.9rem;
+    }
+
+    .history h3 {
+      margin-bottom: 8px;
+    }
+
+    .history p {
+      margin: 4px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>📱 Scientific Calculator</h1>
+  <select id="themeSelector" onchange="changeTheme(this.value)">
+    <option value="light">🌤 Light</option>
+    <option value="dark">🌙 Dark</option>
+    <option value="pastel">🍬 Pastel</option>
+  </select>
+
+  <div class="calculator">
+    <div class="display" id="display">0</div>
+    <div class="buttons">
+      <!-- Row 1 -->
+      <button class="clear" onclick="clearDisplay()">C</button>
+      <button onclick="deleteLast()">⌫</button>
+      <button onclick="append('(')">(</button>
+      <button onclick="append(')')">)</button>
+
+      <!-- Row 2 -->
+      <button onclick="append('7')">7</button>
+      <button onclick="append('8')">8</button>
+      <button onclick="append('9')">9</button>
+      <button class="operator" onclick="append('/')">÷</button>
+
+      <!-- Row 3 -->
+      <button onclick="append('4')">4</button>
+      <button onclick="append('5')">5</button>
+      <button onclick="append('6')">6</button>
+      <button class="operator" onclick="append('*')">×</button>
+
+      <!-- Row 4 -->
+      <button onclick="append('1')">1</button>
+      <button onclick="append('2')">2</button>
+      <button onclick="append('3')">3</button>
+      <button class="operator" onclick="append('-')">−</button>
+
+      <!-- Row 5 -->
+      <button onclick="append('0')">0</button>
+      <button onclick="append('.')">.</button>
+      <button class="equal" onclick="calculate()">=</button>
+      <button class="operator" onclick="append('+')">+</button>
+
+      <!-- Row 6 - Functions and constants -->
+      <button onclick="append('π')">π</button>
+      <button onclick="append('e')">e</button>
+      <button onclick="append('^')">^</button>
+      <button onclick="append('√(')">√</button>
+
+      <!-- Row 7 - Trig and log -->
+      <button onclick="append('sin(')">sin</button>
+      <button onclick="append('cos(')">cos</button>
+      <button onclick="append('tan(')">tan</button>
+      <button onclick="append('log(')">log</button>
+
+      <!-- Row 8 - Memory buttons -->
+      <button onclick="memoryAdd()">M+</button>
+      <button onclick="memorySubtract()">M−</button>
+      <button onclick="memoryRecall()">MR</button>
+      <button onclick="memoryClear()">MC</button>
+    </div>
+
+    <div class="history" id="history">
+      <h3>🕘 History</h3>
+      <div id="historyList"></div>
+    </div>
+  </div>
+
+  <script>
+    const display = document.getElementById('display');
+    const historyList = document.getElementById('historyList');
+    let expression = '';
+    let memory = 0;
+
+    const constants = {
+      π: Math.PI,
+      e: Math.E
+    };
+
+    function append(value) {
+      expression += value;
+      updateDisplay();
+    }
+
+    function updateDisplay() {
+      display.textContent = expression || '0';
+    }
+
+    function clearDisplay() {
+      expression = '';
+      updateDisplay();
+    }
+
+    function deleteLast() {
+      expression = expression.slice(0, -1);
+      updateDisplay();
+    }
+
+    function calculate() {
+      try {
+        let exp = expression
+          .replace(/π/g, constants.π)
+          .replace(/e/g, constants.e)
+          .replace(/√/g, 'Math.sqrt')
+          .replace(/log/g, 'Math.log10')
+          .replace(/sin/g, 'Math.sin')
+          .replace(/cos/g, 'Math.cos')
+          .replace(/tan/g, 'Math.tan')
+          .replace(/\^/g, '**');
+
+        let result = eval(exp);
+
+        addToHistory(expression + ' = ' + result);
+        expression = result.toString();
+        updateDisplay();
+      } catch (err) {
+        display.textContent = 'Error';
+        expression = '';
+      }
+    }
+
+    function addToHistory(entry) {
+      const p = document.createElement('p');
+      p.textContent = entry;
+      historyList.prepend(p);
+
+      let history = JSON.parse(localStorage.getItem('calcHistory')) || [];
+      history.unshift(entry);
+      localStorage.setItem('calcHistory', JSON.stringify(history.slice(0, 10)));
+    }
+
+    function loadHistory() {
+      let history = JSON.parse(localStorage.getItem('calcHistory')) || [];
+      historyList.innerHTML = '';
+      history.forEach(entry => {
+        const p = document.createElement('p');
+        p.textContent = entry;
+        historyList.appendChild(p);
+      });
+    }
+
+    function memoryAdd() {
+      memory += parseFloat(expression) || 0;
+      alert("Added to Memory: " + memory);
+    }
+
+    function memorySubtract() {
+      memory -= parseFloat(expression) || 0;
+      alert("Subtracted from Memory: " + memory);
+    }
+
+    function memoryRecall() {
+      expression += memory;
+      updateDisplay();
+    }
+
+    function memoryClear() {
+      memory = 0;
+      alert("Memory Cleared");
+    }
+
+    function changeTheme(theme) {
+      document.body.setAttribute("data-theme", theme);
+    }
+
+    loadHistory();
+
+    // Keyboard input support
+    document.addEventListener('keydown', (e) => {
+      if (!isNaN(e.key) || ['+', '-', '*', '/', '.', '(', ')'].includes(e.key)) {
+        append(e.key);
+      } else if (e.key === 'Backspace') {
+        deleteLast();
+      } else if (e.key === 'Enter') {
+        calculate();
+      }
+    });
+  </script>
+</body>
+</html>
+
