@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Landing Platform |Full Stack Developer</title>
+
+  <!-- Internal CSS -->
+  <style>
+    /* Global Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      background: #f9fbfd;
+      color: #333;
+    }
+
+    a {
+      text-decoration: none;
+      color: #0077cc;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    /* Header */
+    header {
+      background-color: #0a192f;
+      color: #fff;
+      padding: 20px 0;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+    }
+
+    nav a {
+      margin-left: 20px;
+      color: #00b4d8;
+      font-weight: bold;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(to right, #0077cc, #00b4d8);
+      color: #fff;
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    .hero h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #fff;
+      color: #0077cc;
+      padding: 12px 24px;
+      border-radius: 6px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: #e0f2ff;
+    }
+
+    /* Services Section */
+    .services {
+      background: #fff;
+      padding: 60px 20px;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      margin-bottom: 40px;
+      color: #0a192f;
+      border-left: 5px solid #00b4d8;
+      padding-left: 15px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background: #f0f8ff;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+    }
+
+    /* About Section */
+    .about {
+      background: #eef3f7;
+      padding: 60px 20px;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .about img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    /* Contact Section */
+    .contact {
+      background: #fff;
+      padding: 60px 20px;
+    }
+
+    .contact p {
+      font-size: 1.1rem;
+      margin: 12px 0;
+    }
+
+    /* Footer */
+    footer {
+      background: #0a192f;
+      color: #fff;
+      text-align: center;
+      padding: 20px 0;
+      margin-top: 40px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h2 {
+        font-size: 2rem;
+      }
+
+      nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav a {
+        margin: 10px 0 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="container nav">
+      <h1>Landing Platform</h1>
+      <nav>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <h2>Build Stunning Platform</h2>
+      <p>Professional Full Stack Development services.</p>
+      
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="services" id="services">
+    <div class="container">
+      <h2 class="section-title">Our Services</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>🌐 Full Stack Web Development</h3>
+          <p>Designing and building complete web applications from scratch using frontend (HTML, CSS, JavaScript, React) and backend (Node.js, Express.js, Java, etc.) technologies.</p>
+        </div>
+
+        <div class="card">
+          <h3>⚙️ API & Database Management</h3>
+          <p>Developing RESTful APIs, integrating third-party services, and managing databases (MongoDB, MySQL) for secure and efficient data handling.</p>
+        </div>
+
+         <div class="card">
+          <h3>☁️ Deployment & Maintenance</h3>
+          <p>Deploying applications on cloud platforms (AWS, Heroku, Vercel, Netlify), ensuring scalability, security, and ongoing support.</p>
+         </div>
+ 
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about" id="about">
+    <div class="container about-grid">
+      <div>
+        <h2 class="section-title">About Me</h2>
+        <p>
+          I am a dedicated Full Stack Developer with a strong passion for designing and building scalable, high-performance web applications. With hands-on experience in both frontend and backend technologies, I enjoy transforming ideas into real-world digital solutions that are efficient, user-friendly, and visually appealing.<br>
+          <br>
+
+🔹 What I Do<br>
+<br>
+
+💻 Frontend Development → Craft responsive & interactive UIs using HTML, CSS, JavaScript, React, and modern frameworks<br>
+<br>
+
+⚙️ Backend Development → Build secure & scalable APIs with Node.js, Express.js, Java, MongoDB, and MySQL<br>
+<br>
+
+🎨 UI/UX Focused → Emphasize clean design, accessibility, and performance for the best user experience<br>
+<br>
+
+🔐 System Design → Experience in RESTful APIs, authentication, session management, and data handling<br>
+<br>
+
+🚀 Best Practices → Write clean, reusable code, follow Git/GitHub workflows, and adopt mobile-first designs<br>
+<br>
+
+☁️ Cloud & DevOps → Exploring deployment strategies and scalability with cloud platforms and DevOps tools<br>
+<br>
+
+📚 Continuous Learning → Always upgrading my skills to stay ahead in the fast-evolving tech landscape<br>
+<br>
+
+✨ My ultimate goal is to bridge the gap between user experience and technical implementation, delivering solutions that are functional, innovative, and impactful.
+        </p>
+      </div>
+      <img src="https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://images.ctfassets.net/wp1lcwdav1p1/3yCVoGIGdQ3Iucd84OFpi7/6d5222f5d19e18ac10aa1dac5ec67a36/GettyImages-1363841531_Java_vs_C____3_.jpg?w=1500&h=680&q=60&fit=fill&f=faces&fm=jpg&fl=progressive&auto=format%2Ccompress&dpr=1&w=1000" alt="Full Stack Developer" />
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <h2 class="section-title">Contact Me</h2>
+      <p>Email: <a href="rutujabhavar95@gmail.com">rutujabhavar95@gmail.com</a></p>
+      <p>Phone: +91 9370737241</p>
+      <p>LinkedIn: <a href="https://www.linkedin.com/in/rutujabhavar06" target="_blank">linkedin.com/in/yourname</a></p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Landing Platform. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
+
